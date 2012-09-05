@@ -1,0 +1,26 @@
+<div class="hero-unit">
+  <p id="notice"><%= notice %></p>
+
+  <h2><%= @board.name %></h2>
+  <% @board.topics.each do |topic| %>
+      <div class="topic row">
+        <div class="span9">
+          <div class="topic_subject">
+            <h3><%= link_to topic.subject, topic %></h3>
+          </div>
+          <div class="topic_body">
+            <%= topic.body %>
+          </div>
+        </div>
+        <div class="span1">
+          <%= link_to 'Edit', edit_topic_path(topic), class: "btn" %>
+        </div>
+      </div>
+  <% end %>
+
+
+  <br/>
+
+  <%= link_to 'New Topic', new_topic_path(:topic => {:board_id => @board}), class: "btn" %>
+
+</div>

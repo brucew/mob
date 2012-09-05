@@ -1,0 +1,23 @@
+<div class="hero-unit">
+  <h2>Boards</h2>
+
+  <% @boards.each do |board| %>
+      <div class="board row">
+        <div class="span9">
+          <div class="board_name">
+            <h3><%= link_to board.name, board %></h3>
+          </div>
+          <div class="board_description">
+            <%= board.description %>
+          </div>
+        </div>
+        <div class="span1">
+          <%= link_to 'Edit', edit_board_path(board), class: "btn" %>
+        </div>
+      </div>
+  <% end %>
+
+  <br/>
+
+  <%= link_to 'New Board', new_board_path, class: "btn" %>
+</div>
