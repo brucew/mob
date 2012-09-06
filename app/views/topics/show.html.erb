@@ -1,20 +1,37 @@
+<ul class="breadcrumb">
+  <li><a href="#">Home</a> <span class="divider">/</span></li>
+  <li><%= link_to 'Boards', boards_path %>
+    <span class="divider">/</span></li>
+  <li><%= link_to @topic.board.name, board_path(@topic.board) %>
+    <span class="divider">/</span></li>
+  <li class="active"><%= @topic.subject %></li>
+</ul>
+
 <p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h1><%= @topic.subject %></h1>
+</div>
 
-<p>
-  <b>Subject:</b>
-  <%= @topic.subject %>
-</p>
+<div id="posts">
+  <%= render @topic.posts %>
+</div>
 
-<p>
-  <b>Board:</b>
-  <%= @topic.board_id %>
-</p>
+<br/>
 
-<p>
-  <b>Created by:</b>
-  <%= @topic.created_by %>
-</p>
+<%= form_for(Post.new, :remote => true) do |f| %>
+    <%= f.hidden_field :topic_id, :value => @topic.id %>
 
+    <div class="field">
+      <%= f.label :body %>
+      <%= f.text_area :body, class: 'span6' %>
+    </div>
 
-<%= link_to 'Edit', edit_topic_path(@topic) %> |
-<%= link_to 'Back', topics_path %>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+<% end %>
+
+<%= link_to 'New Post', new_topic_post_path(@topic), class: "btn" %>
+
+</div>

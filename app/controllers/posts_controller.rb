@@ -24,7 +24,8 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.json
   def new
-    @post = Post.new
+    @post = Post.new(params[:topic])
+    @post.topic_id = params[:topic_id]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,9 +46,11 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.js
         format.json { render json: @post, status: :created, location: @post }
       else
         format.html { render action: "new" }
+        format.js
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
@@ -61,10 +64,12 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.update_attributes(params[:post])
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { head :no_content }
+        #format.json { head :no_content }
+        format.json { respond_with_bip(@post) }
       else
         format.html { render action: "edit" }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        #format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip(@post) }
       end
     end
   end

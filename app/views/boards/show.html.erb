@@ -1,3 +1,9 @@
+<ul class="breadcrumb">
+  <li><a href="#">Home</a> <span class="divider">/</span></li>
+  <li><%= link_to 'Boards', boards_path %><span class="divider">/</span></li>
+  <li class="active"><%= @board.name %></li>
+</ul>
+
 <div class="hero-unit">
   <p id="notice"><%= notice %></p>
 
@@ -21,6 +27,6 @@
 
   <br/>
 
-  <%= link_to 'New Topic', new_topic_path(:topic => {:board_id => @board}), class: "btn" %>
+  <%= link_to 'New Topic', new_board_topic_path(@board), class: "btn" %>
 
 </div>

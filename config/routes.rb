@@ -1,9 +1,13 @@
 Mob::Application.routes.draw do
+  resources :boards do
+    resources :topics
+  end
+
+  resources :topics do
+    resources :posts
+  end
+
   resources :posts
-
-  resources :topics
-
-  resources :boards
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

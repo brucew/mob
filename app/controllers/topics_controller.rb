@@ -25,7 +25,8 @@ class TopicsController < ApplicationController
   # GET /topics/new.json
   def new
     @topic = Topic.new(params[:topic])
-    @topic.build_body
+    @topic.board_id = params[:board_id]
+    @topic.build_body_post
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,6 +43,7 @@ class TopicsController < ApplicationController
   # POST /topics.json
   def create
     @topic = Topic.new(params[:topic])
+    #@topic.created_by = current_user
 
     respond_to do |format|
       if @topic.save

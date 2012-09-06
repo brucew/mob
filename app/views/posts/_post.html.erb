@@ -1,0 +1,13 @@
+<div class="post row">
+  <div class="span9">
+    <div class="post_body">
+      <%= best_in_place post, :body, :type => :textarea,
+                        :display_with => :simple_format,
+                        :ok_button => 'Save', :cancel_button => 'Cancel',
+                        :activator => "#edit_post_#{post.position}" %>
+    </div>
+  </div>
+  <div class="span1">
+    <%= link_to 'Edit', '#', id: "edit_post_#{post.position}", class: 'btn' %>
+  </div>
+</div>

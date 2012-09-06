@@ -1,8 +1,7 @@
 <div class="row">
-  <div class="span12">
+  <div class="span10">
     <%= form_for(@topic) do |f| %>
         <%= f.hidden_field :board_id %>
-
         <% if @topic.errors.any? %>
             <div id="error_explanation">
               <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
@@ -17,15 +16,13 @@
 
         <div class="field">
           <%= f.label :subject %>
-          <br/>
-          <%= f.text_field :subject, :size => 40 %>
+          <%= f.text_field :subject, class: 'span6' %>
         </div>
 
-        <%= f.fields_for :body do |b| %>
+        <%= f.fields_for :body_post do |b| %>
             <div class="field">
               <%= b.label :body %>
-              <br/>
-              <%= b.text_area :body, :cols => 80, :rows => 40 %>
+              <%= b.text_area :body, class: 'span6', rows: 20 %>
             </div>
         <% end %>
 

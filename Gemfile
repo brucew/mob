@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'acts_as_list'
+gem 'best_in_place'
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'rails'
